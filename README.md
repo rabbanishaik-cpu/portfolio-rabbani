@@ -1,24 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Engineer Portfolio
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. This portfolio showcases my work as an AI Engineer with a focus on clean design and smooth user experience.
 
-First, run the development server:
+## 🚀 Features
 
+- Modern UI with Tailwind CSS
+- Dark/Light mode support using next-themes
+- Responsive design for all devices
+- Smooth animations with Framer Motion
+- Type-safe development with TypeScript
+- Component-based architecture using Radix UI primitives
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **UI Components:** Radix UI
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Theme:** next-themes
+
+## 📦 Installation
+
+1. Clone the repository:
+```bash
+git clone [your-repository-url]
+cd portfolio-rabbani
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🏗️ Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── app/              # Next.js app directory
+├── components/       # Reusable UI components
+├── lib/             # Utility functions and configurations
+├── public/          # Static assets
+└── styles/          # Global styles and Tailwind configurations
+```
+
+## 🚀 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 🎨 Customization
+
+- Modify `tailwind.config.ts` for custom styling
+- Update theme colors in `components.json`
+- Add new components in the `components` directory
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
 
 ## Learn More
 
