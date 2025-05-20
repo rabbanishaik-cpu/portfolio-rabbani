@@ -293,6 +293,33 @@ export default function Portfolio() {
                       <a href="#projects">View Projects</a>
                     </Button>
                   </m.div>
+                  <m.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                  >
+                    <Button variant="outline" asChild>
+                      <a href="/rabbani-shaik.pdf" download className="flex items-center gap-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-4 w-4"
+                        >
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                          <polyline points="7 10 12 15 17 10"></polyline>
+                          <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Resume
+                      </a>
+                    </Button>
+                  </m.div>
                 </div>
               </div>
               <m.div
@@ -329,9 +356,9 @@ export default function Portfolio() {
                     as="div"
                     className="max-w-[85%] leading-normal text-zinc-500 sm:text-lg sm:leading-7 dark:text-zinc-400"
                   >
-                    I'm an aspiring AI Engineer with a strong foundation in software development and a growing focus on building real-world AI applications. 
-                    I'm currently diving deep into AI Agents, Voice Agents, and multimodal models, and I'm passionate about solving practical problems using AI.
-                  </AnimatedText>
+                    I&apos;m an AI Engineer with 5+ years of experience building and deploying machine learning models
+                    at scale. My expertise spans across various domains of artificial intelligence, from natural
+                    language processing to computer vision and reinforcement learning.</AnimatedText>
                 </div>
               </AnimatedSection>
 

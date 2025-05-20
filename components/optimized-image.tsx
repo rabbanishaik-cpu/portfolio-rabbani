@@ -22,27 +22,34 @@ export const OptimizedImage = memo(function OptimizedImage({
   const { shouldReduceMotion } = useAnimationContext()
 
   useEffect(() => {
-    // Only attempt to load the image if src is provided
-    if (src) {
-      const img = new Image()
-      img.src = src
+    // Default to loaded if no src is provided
+    if (!src) {
+      setIsLoaded(true)
+      return
+    }
 
-      // Set up onload handler before setting src
-      img.onload = () => {
-        setIsLoaded(true)
-      }
+    // Create a new image object to preload
+    const img = new Image()
 
-      // Handle error case
-      img.onerror = () => {
-        console.error(`Failed to load image: ${src}`)
-        setIsLoaded(true) // Still mark as loaded to avoid showing loading state forever
-      }
-    } else {
-      // If no src is provided, consider it loaded
+    // Set up event handlers before setting src
+    img.onload = () => {
       setIsLoaded(true)
     }
 
-    // No cleanup needed for image loading
+    img.onerror = () => {
+      console.error(`Failed to load image: ${src}`)
+      setIsLoaded(true) // Still mark as loaded to avoid showing loading state forever
+    }
+
+    // Set the source to trigger loading
+    img.src = src
+
+    // Cleanup function
+    return () => {
+      // Remove event handlers to prevent memory leaks
+      img.onload = null
+      img.onerror = null
+    }
   }, [src])
 
   return (
