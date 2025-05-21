@@ -1,6 +1,6 @@
 "use client"
 
-import { Github, Linkedin, Mail, ExternalLink, CalendarIcon, Clock, Tag } from "lucide-react"
+import { Github, Linkedin, Mail, ExternalLink, CalendarIcon, Clock, Tag, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -44,7 +44,7 @@ const projects = [
     link: "",
     tags: ["reinforcement learning", "ai", "games"],
     category: "rl",
-  }
+  },
 ]
 
 // Mock data for blog posts
@@ -66,7 +66,7 @@ const blogPosts = [
     date: "2025-04-15",
     readTime: "12 min",
     category: "prompting",
-  }
+  },
 ]
 
 // Memoized card components
@@ -229,7 +229,11 @@ export default function Portfolio() {
             </div>
             <div className="hidden md:flex items-center gap-4">
               {[
-                { icon: <Linkedin className="h-5 w-5" />, href: "https://www.linkedin.com/in/rabbani-shaik-ind/", label: "LinkedIn" },
+                {
+                  icon: <Linkedin className="h-5 w-5" />,
+                  href: "https://www.linkedin.com/in/rabbani-shaik-ind/",
+                  label: "LinkedIn",
+                },
                 { icon: <Github className="h-5 w-5" />, href: "https://github.com/rabbanishaik-cpu", label: "GitHub" },
               ].map((item, index) => (
                 <m.a
@@ -272,7 +276,8 @@ export default function Portfolio() {
                   as="div"
                   className="max-w-[600px] text-zinc-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-zinc-400"
                 >
-                  I build intelligent systems that combine language, voice, and vision. My current focus is on LLM-powered agents, speech pipelines, and deploying practical AI solutions.
+                  I build intelligent systems that combine language, voice, and vision. My current focus is on
+                  LLM-powered agents, speech pipelines, and deploying practical AI solutions.
                 </AnimatedText>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <m.div
@@ -291,33 +296,6 @@ export default function Portfolio() {
                   >
                     <Button variant="outline" asChild>
                       <a href="#projects">View Projects</a>
-                    </Button>
-                  </m.div>
-                  <m.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                  >
-                    <Button variant="outline" asChild>
-                      <a href="/rabbani-shaik.pdf" download className="flex items-center gap-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="h-4 w-4"
-                        >
-                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                          <polyline points="7 10 12 15 17 10"></polyline>
-                          <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        Download Resume
-                      </a>
                     </Button>
                   </m.div>
                 </div>
@@ -356,9 +334,10 @@ export default function Portfolio() {
                     as="div"
                     className="max-w-[85%] leading-normal text-zinc-500 sm:text-lg sm:leading-7 dark:text-zinc-400"
                   >
-                    I&apos;m an AI Engineer with 5+ years of experience building and deploying machine learning models
-                    at scale. My expertise spans across various domains of artificial intelligence, from natural
-                    language processing to computer vision and reinforcement learning.</AnimatedText>
+                    I'm an aspiring AI Engineer with a strong foundation in software development and a growing focus on
+                    building real-world AI applications. I'm currently diving deep into AI Agents, Voice Agents, and
+                    multimodal models, and I'm passionate about solving practical problems using AI.
+                  </AnimatedText>
                 </div>
               </AnimatedSection>
 
@@ -366,7 +345,8 @@ export default function Portfolio() {
                 {[
                   {
                     title: "NLP",
-                    description: "Experimenting with LLMs, speech-to-text, and conversational AI using tools like Whisper and LangChain.",
+                    description:
+                      "Experimenting with LLMs, speech-to-text, and conversational AI using tools like Whisper and LangChain.",
                     icon: (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -391,7 +371,8 @@ export default function Portfolio() {
                   },
                   {
                     title: "Multimodal AI",
-                    description: "Working with audio + text pipelines, combining modalities to build more intelligent agents.",
+                    description:
+                      "Working with audio + text pipelines, combining modalities to build more intelligent agents.",
                     icon: (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -515,7 +496,7 @@ export default function Portfolio() {
                         {
                           degree: "B.Tech in Computer Science and Engineering",
                           school: "Sir C R Reddy College of Engineering, 2017-2021",
-                        }
+                        },
                       ].map((edu, index) => (
                         <m.div
                           key={index}
@@ -733,8 +714,7 @@ export default function Portfolio() {
                     title: "Software Engineer E",
                     company: "Fidelity National Information Services Inc (FIS)",
                     period: "2021 Aug - 2023 Feb",
-                    description:
-                      "Worked on Automation projects",
+                    description: "Worked on Automation projects",
                   },
                 ].map((job, index) => (
                   <AnimatedTimelineItem
@@ -780,7 +760,7 @@ export default function Portfolio() {
                     as="div"
                     className="max-w-[85%] leading-normal text-zinc-500 sm:text-lg sm:leading-7 dark:text-zinc-400"
                   >
-                  Feel free to reach out.
+                    Feel free to reach out.
                   </AnimatedText>
                 </div>
               </AnimatedSection>
@@ -920,7 +900,11 @@ export default function Portfolio() {
             <div className="flex gap-4">
               {[
                 { icon: <Github className="h-5 w-5" />, href: "https://github.com/rabbanishaik-cpu", label: "GitHub" },
-                { icon: <Linkedin className="h-5 w-5" />, href: "https://www.linkedin.com/in/rabbani-shaik-ind/", label: "LinkedIn" },
+                {
+                  icon: <Linkedin className="h-5 w-5" />,
+                  href: "https://www.linkedin.com/in/rabbani-shaik-ind/",
+                  label: "LinkedIn",
+                },
                 { icon: <Mail className="h-5 w-5" />, href: "mailto:rabbanishaik998@gmail.com", label: "Email" },
               ].map((item, index) => (
                 <m.a

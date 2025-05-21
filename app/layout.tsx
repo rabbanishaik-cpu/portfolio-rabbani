@@ -7,6 +7,7 @@ import { AnimationProvider } from "@/components/animation-provider"
 export const metadata: Metadata = {
   title: "Rabbani Shaik - AI Engineer Portfolio",
   description: "Portfolio website for Rabbani Shaik",
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
