@@ -190,13 +190,13 @@ export default function Portfolio() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-zinc-100 dark:from-zinc-900 dark:to-zinc-950">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-50 to-zinc-100 dark:from-zinc-900 dark:to-zinc-950 pb-16 md:pb-0">
       {/* Header */}
       <m.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-sm dark:bg-zinc-950/80 dark:border-zinc-800 will-change-transform"
+        className="sticky top-0 z-40 w-full border-b bg-white/80 backdrop-blur-sm dark:bg-zinc-950/80 dark:border-zinc-800 will-change-transform"
       >
         <div className="container flex h-16 items-center justify-between">
           <m.div
@@ -252,7 +252,9 @@ export default function Portfolio() {
                 </m.a>
               ))}
             </div>
-            <MobileNav items={navItems} />
+            <div className="md:hidden">
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </m.header>
@@ -543,11 +545,10 @@ export default function Portfolio() {
                   value={activeTab}
                   onValueChange={handleTabChange}
                 >
-                  <TabsList className="grid w-full grid-cols-4">
+                  <TabsList className="grid w-full grid-cols-3">
                     <TabsTrigger value="all">All</TabsTrigger>
-                    <TabsTrigger value="nlp">NLP</TabsTrigger>
+                    <TabsTrigger value="nlp">NLP Technical</TabsTrigger>
                     <TabsTrigger value="cv">Computer Vision</TabsTrigger>
-                    <TabsTrigger value="rl">Reinforcement Learning</TabsTrigger>
                   </TabsList>
                   <TabsContent value="all" className="mt-6">
                     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -923,6 +924,9 @@ export default function Portfolio() {
           </div>
         </div>
       </m.footer>
+
+      {/* Mobile Navigation */}
+      <MobileNav items={navItems} />
 
       {/* Scroll to Top Button */}
       <ScrollToTopButton />
