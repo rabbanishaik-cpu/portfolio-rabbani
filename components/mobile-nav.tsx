@@ -11,6 +11,7 @@ interface MobileNavProps {
     name: string
     href: string
   }[]
+  onNavigate?: (targetId: string) => void
 }
 
 type SocialIconType = "Github" | "Linkedin" | "Mail"
@@ -44,9 +45,17 @@ const SocialLink = memo(function SocialLink({
   )
 })
 
-export const MobileNav = memo(function MobileNav({ items }: MobileNavProps) {
+export const MobileNav = memo(function MobileNav({ items, onNavigate }: MobileNavProps) {
   const { shouldReduceMotion } = useAnimationContext()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const handleItemClick = (href: string) => {
+    if (onNavigate) {
+      const targetId = href.replace('#', '')
+      onNavigate(targetId)
+    }
+    setIsMenuOpen(false)
+  }
 
   return (
     <div className="md:hidden">
@@ -75,20 +84,19 @@ export const MobileNav = memo(function MobileNav({ items }: MobileNavProps) {
           >
             <m.nav className="flex flex-col space-y-4">
               {items.map((item, index) => (
-                <m.a
+                <m.button
                   key={item.name}
-                  href={item.href}
-                  className="text-lg font-medium hover:text-zinc-600 dark:hover:text-zinc-300"
+                  onClick={() => handleItemClick(item.href)}
+                  className="text-lg font-medium hover:text-zinc-600 dark:hover:text-zinc-300 text-left bg-transparent border-none cursor-pointer"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{
                     delay: shouldReduceMotion ? 0.05 * index : 0.1 * index,
                     duration: 0.2,
                   }}
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </m.a>
+                </m.button>
               ))}
             </m.nav>
             <div className="mt-8 flex justify-center space-x-4">

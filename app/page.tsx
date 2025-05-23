@@ -18,13 +18,14 @@ import { m } from "framer-motion"
 import { useAnimationContext } from "@/components/animation-provider"
 import { memo, useState, useCallback } from "react"
 import { ScrollToTopButton } from "@/components/scroll-to-top-button"
+import { Chatbot } from "@/components/aibot"
 
 // Mock data for projects
 const projects = [
   {
     title: "AI-Powered Chatbot",
     description: "A chatbot that uses natural language processing to understand and respond to user queries.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/project-placeholder.svg?height=200&width=300",
     link: "",
     tags: ["nlp", "chatbot", "ai"],
     category: "nlp",
@@ -32,7 +33,7 @@ const projects = [
   {
     title: "Image Recognition System",
     description: "A system that uses computer vision to identify objects in images.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/project-placeholder.svg?height=200&width=300",
     link: "",
     tags: ["computer vision", "image recognition", "ai"],
     category: "cv",
@@ -40,7 +41,7 @@ const projects = [
   {
     title: "Reinforcement Learning Agent",
     description: "An agent that learns to play games using reinforcement learning.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/project-placeholder.svg?height=200&width=300",
     link: "",
     tags: ["reinforcement learning", "ai", "games"],
     category: "rl",
@@ -52,7 +53,7 @@ const blogPosts = [
   {
     title: "7 Best AI Code Editors in 2025",
     excerpt: "A review of best available AI code editors",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/blog-placeholder.svg?height=200&width=300",
     link: "https://www.f22labs.com/blogs/7-best-ai-code-editors-in-2025/",
     date: "2025-05-09",
     readTime: "8 min",
@@ -61,7 +62,7 @@ const blogPosts = [
   {
     title: "Chain of draft: Thinking faster by writing less",
     excerpt: "A new prompting techique which explores reducing token usage with same effiency",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/blog-placeholder.svg?height=200&width=300",
     link: "https://www.f22labs.com/blogs/chain-of-draft-thinking-faster-by-writing-less/",
     date: "2025-04-15",
     readTime: "12 min",
@@ -76,12 +77,12 @@ const ProjectCard = memo(function ProjectCard({ project }: { project: any }) {
   return (
     <Card className="overflow-hidden h-full">
       <div className="aspect-video w-full overflow-hidden">
-        <OptimizedImage
-          src={project.image || "/placeholder.svg?height=200&width=300"}
+        <img
+          src={project.image || "/project-placeholder.svg"}
           alt={project.title}
           width={300}
           height={200}
-          className="w-full h-full"
+          className="w-full h-full object-cover"
         />
       </div>
       <CardHeader>
@@ -127,12 +128,12 @@ const BlogCard = memo(function BlogCard({ post }: { post: any }) {
   return (
     <Card className="overflow-hidden flex flex-col h-full">
       <div className="aspect-video w-full overflow-hidden">
-        <OptimizedImage
-          src={post.image || "/placeholder.svg?height=200&width=300"}
+        <img
+          src={post.image || "/blog-placeholder.svg"}
           alt={post.title}
           width={300}
           height={200}
-          className="w-full h-full"
+          className="w-full h-full object-cover"
         />
       </div>
       <CardHeader>
@@ -181,6 +182,25 @@ export default function Portfolio() {
     setActiveTab(value)
   }, [])
 
+  // Handle navigation to anchor links properly
+  const handleNavigation = useCallback((targetId: string) => {
+    console.log(`handleNavigation called for: ${targetId}`)
+    
+    // First, update the hash to trigger LazySection rendering
+    window.location.hash = targetId
+    
+    // Wait for all sections to render, then scroll
+    setTimeout(() => {
+      const element = document.getElementById(targetId)
+      if (element) {
+        console.log(`Scrolling to element: ${targetId}`)
+        element.scrollIntoView({ behavior: "smooth", block: "start" })
+      } else {
+        console.log(`Element not found: ${targetId}`)
+      }
+    }, 300) // Give enough time for all LazySection components to render
+  }, [])
+
   const navItems = [
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
@@ -209,18 +229,18 @@ export default function Portfolio() {
           </m.div>
           <nav className="hidden md:flex gap-6">
             {navItems.map((item, index) => (
-              <m.a
+              <m.button
                 key={item.name}
-                href={item.href}
+                onClick={() => handleNavigation(item.href.replace('#', ''))}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 * index + 0.3 }}
-                className="text-sm font-medium hover:text-zinc-600 dark:hover:text-zinc-300"
+                className="text-sm font-medium hover:text-zinc-600 dark:hover:text-zinc-300 cursor-pointer bg-transparent border-none"
                 whileHover={shouldReduceMotion ? {} : { y: -2 }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
               >
                 {item.name}
-              </m.a>
+              </m.button>
             ))}
           </nav>
           <div className="flex items-center gap-4">
@@ -287,8 +307,8 @@ export default function Portfolio() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                   >
-                    <Button asChild>
-                      <a href="#contact">Get in Touch</a>
+                    <Button onClick={() => handleNavigation('contact')}>
+                      Get in Touch
                     </Button>
                   </m.div>
                   <m.div
@@ -296,8 +316,8 @@ export default function Portfolio() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
                   >
-                    <Button variant="outline" asChild>
-                      <a href="#projects">View Projects</a>
+                    <Button variant="outline" onClick={() => handleNavigation('projects')}>
+                      View Projects
                     </Button>
                   </m.div>
                 </div>
@@ -309,7 +329,7 @@ export default function Portfolio() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <div className="relative aspect-square overflow-hidden rounded-full border border-zinc-200 w-[280px] h-[280px] sm:w-[280px] sm:h-[280px] max-w-full dark:border-zinc-800">
-                  <OptimizedImage
+                  <img
                     src="/dp.jpg"
                     alt="Rabbani Shaik"
                     width={280}
@@ -323,7 +343,7 @@ export default function Portfolio() {
         </section>
 
         {/* About Section */}
-        <LazySection>
+        <LazySection sectionId="about">
           <section id="about" className="py-12 md:py-24 bg-white dark:bg-zinc-950">
             <div className="container px-4 md:px-6">
               <AnimatedSection>
@@ -520,7 +540,7 @@ export default function Portfolio() {
         </LazySection>
 
         {/* Projects Section */}
-        <LazySection>
+        <LazySection sectionId="projects">
           <section id="projects" className="py-12 md:py-24">
             <div className="container px-4 md:px-6">
               <AnimatedSection>
@@ -599,7 +619,7 @@ export default function Portfolio() {
         </LazySection>
 
         {/* Blog Section */}
-        <LazySection>
+        <LazySection sectionId="blog">
           <section id="blog" className="py-12 md:py-24 bg-white dark:bg-zinc-950">
             <div className="container px-4 md:px-6">
               <AnimatedSection>
@@ -677,7 +697,7 @@ export default function Portfolio() {
         </LazySection>
 
         {/* Experience Section */}
-        <LazySection>
+        <LazySection sectionId="experience">
           <section id="experience" className="py-12 md:py-24">
             <div className="container px-4 md:px-6">
               <AnimatedSection>
@@ -748,7 +768,7 @@ export default function Portfolio() {
         </LazySection>
 
         {/* Contact Section */}
-        <LazySection>
+        <LazySection sectionId="contact">
           <section id="contact" className="py-12 md:py-24 bg-white dark:bg-zinc-950">
             <div className="container px-4 md:px-6">
               <AnimatedSection>
@@ -926,10 +946,13 @@ export default function Portfolio() {
       </m.footer>
 
       {/* Mobile Navigation */}
-      <MobileNav items={navItems} />
+      <MobileNav items={navItems} onNavigate={handleNavigation} />
 
       {/* Scroll to Top Button */}
-      <ScrollToTopButton />
+      {/* <ScrollToTopButton /> */}
+
+      {/* Chatbot */}
+      <Chatbot />
     </div>
   )
 }
