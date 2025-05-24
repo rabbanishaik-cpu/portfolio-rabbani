@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react"
 import { m, AnimatePresence } from "framer-motion"
 import { Send, X, Bot, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useAnimationContext } from "./animation-provider"
 
 interface Message {
   id: string
@@ -26,7 +25,8 @@ export default function Chatbot() {
   const [inputValue, setInputValue] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
-  const { shouldReduceMotion } = useAnimationContext ? useAnimationContext() : { shouldReduceMotion: false }
+  // For now, disable reduced motion to avoid build issues
+  const shouldReduceMotion = false
   const [isHovered, setIsHovered] = useState(false)
 
   const scrollToBottom = () => {
