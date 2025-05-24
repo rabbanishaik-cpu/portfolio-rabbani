@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { m, AnimatePresence } from "framer-motion"
-import { Send, X, Bot, User } from "lucide-react"
+import { Send, X, Bot, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useAnimationContext } from "./animation-provider"
 
@@ -13,30 +13,7 @@ interface Message {
   timestamp: Date
 }
 
-const ChatBubbleIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Outer bubble */}
-    <path
-      d="M24 10C24 14.866 18.97 19 12 19C10.258 19 8.589 18.794 7.029 18.423L2 20L3.577 14.471C3.106 13.211 2.8 11.842 2.8 10.4C2.8 5.534 8.03 1 14 1C19.97 1 24 5.134 24 10Z"
-      fill="currentColor"
-      fillOpacity="0.8"
-    />
-    {/* Inner bubble */}
-    <circle
-      cx="14"
-      cy="8"
-      r="0"
-      fill="currentColor"
-      fillOpacity="0.4"
-    />
-    {/* Small dots for AI effect */}
-    <circle cx="12" cy="6" r="0.5" fill="white" />
-    <circle cx="14" cy="7" r="0.5" fill="white" />
-    <circle cx="16" cy="8" r="0.5" fill="white" />
-  </svg>
-)
-
-export function Chatbot() {
+export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -49,7 +26,8 @@ export function Chatbot() {
   const [inputValue, setInputValue] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
-  const { shouldReduceMotion } = useAnimationContext()
+  const { shouldReduceMotion } = useAnimationContext ? useAnimationContext() : { shouldReduceMotion: false }
+  const [isHovered, setIsHovered] = useState(false)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -96,7 +74,7 @@ export function Chatbot() {
 
   return (
     <>
-      {/* Chat Interface - Made Bigger */}
+      {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <m.div
@@ -104,7 +82,7 @@ export function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.9 }}
             transition={{ duration: shouldReduceMotion ? 0.1 : 0.3, ease: "easeOut" }}
-            className="fixed bottom-24 right-6 w-96 h-[32rem] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-4 w-96 h-[32rem] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-zinc-200 dark:border-zinc-800">
@@ -193,56 +171,48 @@ export function Chatbot() {
         )}
       </AnimatePresence>
 
-      {/* Floating Chat Button */}
-      <m.button
-        onClick={() => setIsOpen(!isOpen)}
-        whileHover={shouldReduceMotion ? {} : { scale: 1.1 }}
-        whileTap={shouldReduceMotion ? {} : { scale: 0.9 }}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-zinc-900 dark:bg-zinc-800 hover:bg-zinc-800 dark:hover:bg-zinc-700 text-white rounded-full shadow-lg flex items-center justify-center z-50 transition-colors"
-        aria-label="Open AI Assistant"
-      >
-        {/* Welcome Message - Always Visible */}
-        {!isOpen && (
-          <m.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.3, delay: 1 }}
-            className="absolute bottom-0 right-16 mb-2"
-          >
-            <div className="bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm px-4 py-3 rounded-xl shadow-lg whitespace-nowrap max-w-xs">
+      {/* Floating Chat Button (New Avatar) */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <div
+          className="relative group cursor-pointer"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={() => setIsOpen((v) => !v)}
+        >
+          {/* Persistent Welcome Tooltip */}
+          {!isOpen && (
+            <div
+              className={
+                "absolute bottom-0 right-16 mb-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm px-4 py-3 rounded-xl shadow-lg whitespace-nowrap max-w-xs flex flex-col items-start"
+              }
+            >
               <div className="font-medium mb-1">👋 Welcome!</div>
               <div className="text-zinc-600 dark:text-zinc-400">Ask me anything about Rabbani</div>
               <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-t-transparent border-b-transparent border-l-white dark:border-l-zinc-800"></div>
             </div>
-          </m.div>
-        )}
-
-        <AnimatePresence mode="wait">
-          {isOpen ? (
-            <m.div
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <X className="w-5 h-5" />
-            </m.div>
-          ) : (
-            <m.div
-              key="chat"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="flex items-center justify-center"
-            >
-              <ChatBubbleIcon />
-            </m.div>
           )}
-        </AnimatePresence>
-      </m.button>
+
+          {/* Main Avatar Container */}
+          <div className="relative">
+            {/* Pulse Animation Ring */}
+            <div className="absolute -inset-2 bg-blue-500 rounded-full animate-ping opacity-20 -z-10"></div>
+
+            {/* Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-md opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+
+            {/* Main Button */}
+            <div className="relative w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
+              {/* AI Sparkle Effect */}
+              <div className="absolute top-0.5 right-0.5">
+                <Sparkles className="w-4 h-4 text-yellow-300 animate-pulse" />
+              </div>
+
+              {/* Bot Icon */}
+              <Bot className="w-6 h-6 text-white" />
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
-} 
+}

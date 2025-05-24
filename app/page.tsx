@@ -18,7 +18,7 @@ import { m } from "framer-motion"
 import { useAnimationContext } from "@/components/animation-provider"
 import { memo, useState, useCallback } from "react"
 import { ScrollToTopButton } from "@/components/scroll-to-top-button"
-import { Chatbot } from "@/components/aibot"
+import ChatbotAvatar from "@/components/aibot"
 
 // Mock data for projects
 const projects = [
@@ -952,7 +952,7 @@ export default function Portfolio() {
       {/* <ScrollToTopButton /> */}
 
       {/* Chatbot */}
-      <Chatbot />
+      <ChatbotAvatar />
     </div>
   )
 }
