@@ -30,8 +30,8 @@ export default function Chatbot() {
                   <Bot className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm">AI Assistant</h3>
-                  <p className="text-xs text-zinc-500 dark:text-zinc-400">Powered by Hugging Face</p>
+                  <h3 className="font-semibold text-sm">Rabbani's AI</h3>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400">Ask anything about my skils, projects, and more</p>
                 </div>
               </div>
               <Button
