@@ -77,7 +77,7 @@ export default function Chatbot() {
               }
             >
               <div className="font-medium mb-1">👋 Welcome!</div>
-              <div className="text-zinc-600 dark:text-zinc-400">Ask me anything about Rabbani</div>
+              <div className="text-zinc-600 dark:text-zinc-400">Ask anything about me</div>
               <div className="absolute left-full top-1/2 -translate-y-1/2 w-0 h-0 border-t-4 border-b-4 border-l-4 border-t-transparent border-b-transparent border-l-white dark:border-l-zinc-800"></div>
             </div>
           )}

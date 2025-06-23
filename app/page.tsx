@@ -786,40 +786,42 @@ export default function Portfolio() {
                 </div>
               </AnimatedSection>
 
-              <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2">
+              <div className="mx-auto mt-12 max-w-md space-y-8">
                 <AnimatedSection delay={0.2}>
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     {[
-                      {
-                        icon: <Mail className="h-5 w-5" />,
-                        text: "rabbanishaik998@gmail.com",
-                        href: "mailto:rabbanishaik998@gmail.com",
+                                            {
+                        icon: <Linkedin className="h-6 w-6" />,
+                        text: "linkedin.com/in/rabbani-shaik-ind",
+                        href: "https://linkedin.com/in/rabbani-shaik-ind/",
                       },
                       {
-                        icon: <Github className="h-5 w-5" />,
+                        icon: <Github className="h-6 w-6" />,
                         text: "github.com/rabbanishaik-cpu",
                         href: "https://github.com/rabbanishaik-cpu",
                       },
                       {
-                        icon: <Linkedin className="h-5 w-5" />,
-                        text: "linkedin.com/in/rabbani-shaik-ind",
-                        href: "https://linkedin.com/in/rabbani-shaik-ind/",
+                        icon: <Mail className="h-6 w-6" />,
+                        text: "rabbanishaik998@gmail.com",
+                        href: "mailto:rabbanishaik998@gmail.com",
                       },
+
                     ].map((contact, index) => (
                       <m.div
                         key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.4, delay: 0.1 * index + 0.2 }}
-                        className="flex items-center gap-2"
+                        whileHover={shouldReduceMotion ? {} : { x: 5 }}
+                        className="flex items-center justify-center gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition-colors"
                       >
                         <span className="text-zinc-500 dark:text-zinc-400">{contact.icon}</span>
                         <a
                           href={contact.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-300"
+                          className="text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-300 font-medium"
                         >
                           {contact.text}
                         </a>
@@ -827,75 +829,23 @@ export default function Portfolio() {
                     ))}
                   </div>
                 </AnimatedSection>
-                <AnimatedSection delay={0.3}>
-                  <div className="space-y-4">
-                    <m.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.3 }}
-                      className="grid gap-2"
-                    >
-                      <label
-                        htmlFor="name"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Name
-                      </label>
-                      <input
-                        id="name"
-                        className="flex h-10 w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-950 dark:placeholder:text-zinc-400 dark:focus-visible:ring-zinc-300"
-                        placeholder="Your name"
-                      />
-                    </m.div>
+                
+                <AnimatedSection delay={0.4}>
+                  <div className="flex justify-center">
                     <m.div
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.4 }}
-                      className="grid gap-2"
+                      whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
+                      whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
                     >
-                      <label
-                        htmlFor="email"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Email
-                      </label>
-                      <input
-                        id="email"
-                        type="email"
-                        className="flex h-10 w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-950 dark:placeholder:text-zinc-400 dark:focus-visible:ring-zinc-300"
-                        placeholder="Your email"
-                      />
-                    </m.div>
-                    <m.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.5 }}
-                      className="grid gap-2"
-                    >
-                      <label
-                        htmlFor="message"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Message
-                      </label>
-                      <textarea
-                        id="message"
-                        className="flex min-h-[120px] w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-800 dark:bg-zinc-950 dark:ring-offset-zinc-950 dark:placeholder:text-zinc-400 dark:focus-visible:ring-zinc-300"
-                        placeholder="Your message"
-                      ></textarea>
-                    </m.div>
-                    <m.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.6 }}
-                      whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
-                      whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-                    >
-                      <Button className="w-full">Send Message</Button>
+                      {/* <Button size="lg" asChild>
+                        <a href="/rabbani-shaik (1).pdf" download className="flex items-center gap-2">
+                          <Download className="h-5 w-5" />
+                          Download Resume
+                        </a>
+                      </Button> */}
                     </m.div>
                   </div>
                 </AnimatedSection>
