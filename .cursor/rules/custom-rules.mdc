@@ -1,0 +1,57 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# AI Enginner Portfolio - Cursor Rules
+
+## Tech Stack
+- **Framework:** Next.js 14
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **UI Components:** Radix UI, custom primitives
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Theme:** next-themes
+
+## Path Aliases
+- `@/components` → `components/`
+- `@/lib` → `lib/`
+- `@/ui` → `components/ui/`
+
+## Key Conventions
+- **Files**: kebab-case (`animated-card.tsx`)
+- **Components**: PascalCase, named exports
+- **Styling**: Tailwind CSS + `cn()` utility from `@/lib/utils`
+- **Animations**: Framer Motion for smooth transitions
+- **Themes**: Support dark/light mode with CSS variables
+
+## Component Pattern
+```tsx
+import { motion } from 'framer-motion'
+import { Button } from '@/ui/button'
+import { cn } from '@/lib/utils'
+
+interface Props {
+  // Define proper TypeScript types
+}
+
+export const ComponentName = ({ ...props }: Props) => {
+  // Component logic
+  return (
+    // JSX with Tailwind classes
+  )
+}
+```
+
+## Import Order
+1. React/Next.js
+2. External libraries
+3. Internal components
+4. Types and utils
+
+
+
+
+
+Prioritize clean, maintainable code following existing patterns.

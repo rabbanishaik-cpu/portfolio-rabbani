@@ -21,7 +21,7 @@ export default function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 100, scale: 0.9 }}
             transition={{ duration: shouldReduceMotion ? 0.1 : 0.3, ease: "easeOut" }}
-            className="fixed bottom-10 right-2 left-2 h-[75vh] md:bottom-24 md:right-4 md:left-auto md:w-[32rem] md:h-[40rem] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-10 right-2 left-2 h-[80vh] md:bottom-20 md:right-4 md:left-auto md:w-[32rem] md:h-[35rem] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-zinc-200 dark:border-zinc-800">
