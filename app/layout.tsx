@@ -6,12 +6,13 @@ import { AnimationProvider } from "@/components/animation-provider"
 
 export const metadata: Metadata = {
   title: "Rabbani Shaik - AI Engineer Portfolio",
-  description: "Portfolio website for Rabbani Shaik",
-    generator: 'v0.dev'
+  description:
+    "Portfolio of Rabbani Shaik, an AI Engineer building production voice AI systems, LLM integrations, and realtime agent workflows.",
+  generator: "v0.dev",
 }
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,

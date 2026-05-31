@@ -2,7 +2,7 @@
 
 import { memo, useState } from "react"
 import { m, AnimatePresence } from "framer-motion"
-import { Github, Linkedin, Mail, Menu, X, Download } from "lucide-react"
+import { Github, Linkedin, Mail, Menu, X } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useAnimationContext } from "./animation-provider"
 
