@@ -374,7 +374,7 @@ I build realtime voice/video AI platforms and GenAI-enabled systems. My work foc
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-zinc-200 bg-zinc-100 w-[300px] h-[360px] dark:border-zinc-800 dark:bg-zinc-900">
-                  <img src="/dp.jpg" alt="Rabbani Shaik" width={300} height={360} className="w-full h-full object-cover" />
+                  <img src="/Headshot.png" alt="Rabbani Shaik" width={300} height={360} className="w-full h-full object-cover" />
                 </div>
               </m.div>
             </div>
